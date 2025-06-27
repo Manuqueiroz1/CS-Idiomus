@@ -340,7 +340,7 @@ async def chat(request: Request):
     user_message = data.get("message", "")
     result = await gabi.run(user_message)
     return {"response": result.final_output}
-from agents import OpenAIAgent
+from agents.agent import OpenAIAgent
 
 gabi = OpenAIAgent(
     name="Gabi – Atendimento Idiomus",
