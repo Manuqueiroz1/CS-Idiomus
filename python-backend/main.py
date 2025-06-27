@@ -340,9 +340,9 @@ async def chat(request: Request):
     user_message = data.get("message", "")
     result = await gabi.run(user_message)
     return {"response": result.final_output}
-from agents.agent import OpenAIAgent
+from agents import Agent
 
-gabi = OpenAIAgent(
+gabi = Agent(
     name="Gabi – Atendimento Idiomus",
     model="gpt-4",  # ou gpt-4.1
     instructions="""Prompt Base Gabi (Atendimento Idiomus CS) — Revisado e Otimizado
