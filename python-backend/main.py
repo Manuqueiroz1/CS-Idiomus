@@ -348,8 +348,9 @@ app.add_middleware(
 async def chat(request: Request):
     data = await request.json()
     user_message = data.get("message", "")
-    result = await gabi.run(user_message)
-    return {"response": result.final_output}
+    result = await gabi.acall({"input": user_message})
+    return {"response": result.get("output", "Erro ao gerar resposta.")}
+
 from agents import Agent
 
 gabi = Agent(
