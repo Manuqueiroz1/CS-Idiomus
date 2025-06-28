@@ -345,7 +345,7 @@ app.add_middleware(
 )
 
 
-from openai import Agent
+from openai_agents import Agent
 
 gabi = Agent(
     name="Gabi – Atendimento Idiomus",
