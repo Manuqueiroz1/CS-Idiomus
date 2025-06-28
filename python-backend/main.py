@@ -1,5 +1,4 @@
 from __future__ import annotations as _annotations
-from fastapi.middleware.cors import CORSMiddleware
 
 import random
 from pydantic import BaseModel
@@ -335,9 +334,11 @@ def health_check():
     return {"status": "online"}
 from fastapi import Request
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # OU restrinja para ["https://seusite.com"]
+    allow_origins=["*"],  # ou use ["http://127.0.0.1:5500"] para mais segurança
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
