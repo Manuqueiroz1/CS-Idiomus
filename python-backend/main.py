@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from __future__ import annotations as _annotations
 
 import random
@@ -333,6 +334,14 @@ app.add_middleware(
 def health_check():
     return {"status": "online"}
 from fastapi import Request
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # OU restrinja para ["https://seusite.com"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/chat")
 async def chat(request: Request):
