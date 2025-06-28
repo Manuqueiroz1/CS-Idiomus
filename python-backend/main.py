@@ -1,5 +1,5 @@
-from fastapi.middleware.cors import CORSMiddleware
 from __future__ import annotations as _annotations
+from fastapi.middleware.cors import CORSMiddleware
 
 import random
 from pydantic import BaseModel
