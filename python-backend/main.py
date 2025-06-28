@@ -344,14 +344,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/chat")
-async def chat(request: Request):
-    data = await request.json()
-    user_message = data.get("message", "")
-    result = await gabi.acall({"input": user_message})
-    return {"response": result.get("output", "Erro ao gerar resposta.")}
 
-from agents import Agent
+from openai_agents import Agent
 
 gabi = Agent(
     name="Gabi – Atendimento Idiomus",
@@ -503,3 +497,11 @@ Atenda em português ou espanhol conforme a preferência do usuário.
 Nunca compartilhe informações ou opiniões pessoais.
 Oriente sempre para o canal oficial e a equipe humana em questões sensíveis, complexas ou fora do escopo deste prompt."""
 )
+
+@app.post("/chat")
+async def chat(request: Request):
+    data = await request.json()
+    user_message = data.get("message", "")
+
+    result = await gabi.acall({"input": user_message})
+    return {"response": result.get("output", "Erro ao gerar resposta.")}
